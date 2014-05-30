@@ -1,0 +1,19 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body{
+	padding-top:25px;	
+}
+
+.pages {
+	padding-top:25px;
+	padding-left:25px;
+}
+
+.pagetext {
+	with:50%;
+}
+
+.thin {
+	width:350px;
+}
