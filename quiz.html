@@ -3,6 +3,7 @@
 <head>
     <title>Music Quiz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
     <!-- Bootstrap -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="dist/css/style.css" rel="stylesheet">
@@ -24,23 +25,14 @@
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     		<ul class="nav navbar-nav">
-            <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li><a href="index.html"><span class="glyphicon glyphicon-home"></span></a></li>
       			<li><a href="logIn.html">Log in</a></li>
       			<li><a href="createAccount.html">Create Account</a></li>
     		</ul>
 	</nav>
     
     <div id="question" class="pages">
-    	<br />
-        	<div class= pagetext>
-        		<h1  id="test"> Here should we dynamically import question one </h1>
-
-                <br />
-                <br />
-        		<p>
-        		</p>
-                <br />
-        	</div>
+    	<!-- here we dynamically import content from getQuestionTest.js -->
     </div>
    
 
@@ -51,6 +43,8 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
     <script src="../../docs-assets/js/holder.js"></script>
+    <script type="text/javascript" src="dist/js/yearQuestion.js"></script>
+    <script type="text/javascript" src="dist/js/mcQuestion.js"></script>
     <script src="dist/js/getQuestion.js"></script>
   </body>
 </html>

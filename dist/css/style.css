@@ -11,9 +11,22 @@ body{
 }
 
 .pagetext {
-	with:50%;
+	width:50%;
 }
 
 .thin {
 	width:350px;
+}
+
+#qText{
+	padding-top: 30px;
+}
+
+.qimg{
+	height:200px;
+}
+
+.multipleChoice{
+	padding-top: 15px;
+	padding-bottom: 25px;
 }
