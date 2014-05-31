@@ -1,4 +1,5 @@
-function guessYearQuestion(jsonObj, questionNumber) {
+function guessYearQuestion(jsonObj, questionNumber, numberRight) {
+    var rights = numberRight;
     var imageURL = "'" + "dist/img/" + jsonObj.QImage + "'";
     element = $("#question").append("div").html(
         "<div class='row'>" +
@@ -25,15 +26,20 @@ function guessYearQuestion(jsonObj, questionNumber) {
         "</div>"
     );
 
-    $("#submitAnswer").click(function(jsonObj) {
+    console.log("2: jsonObj.Correct is: " + jsonObj.Correct + "and of type: " + typeof(jsonObj.Correct));
+    $("#submitAnswer").click(function() {
         //Save the users answer to the variable answer. This is a string (like "1988"). 
         var answer = $("#answer")[0].value;
+        console.log("answer is: " + answer + " and type is: " + typeof(answer));
+        console.log("jsonObj.Correct is: " + jsonObj.Correct + "and of type: " + typeof(jsonObj.Correct));
         // Compare the answer to the correct answer.
         if (answer == jsonObj.Correct) {
             alert("rätt!");
+            rights = rights + 1;
         } else {
             alert("fel");
         }
-        window.location.reload(); //reload the page again and get a new question. 
+        //window.location.reload(); //reload the page again and get a new question. 
+        newQuestion(questionNumber, rights);
     });
 };

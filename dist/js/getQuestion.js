@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     var questionNumber = 1;
+    var numberRight = 0;
     var jsonObj = "Loading question";
     var xmlhttp = new XMLHttpRequest();
 
@@ -16,9 +17,9 @@ $(document).ready(function() {
             // }
             console.log(jsonObj);
             if (jsonObj.Type == "GuessYear") {
-                guessYearQuestion(jsonObj, questionNumber);
+                guessYearQuestion(jsonObj, questionNumber, numberRight);
             } else if (jsonObj.Type == "MCQ") {
-                mcQuestion(jsonObj, questionNumber);
+                mcQuestion(jsonObj, questionNumber, numberRight);
             } else {
                 element = $("#question").append("div").html("<h1> no question matchaded </h1>");
             }
