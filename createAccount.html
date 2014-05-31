@@ -6,13 +6,6 @@
     <!-- Bootstrap -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="dist/css/style.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
     
      <!-- Custom styles for this template -->
     <link href="dist/css/carousel.css" rel="stylesheet">
@@ -38,35 +31,35 @@
                  <br />
         		</p>
                 
-                <form action="addUser.php" method="get">
+                <form action="addUser.php" method="post">
                 	
-                    <div class="thin">
+                  <div class="thin">
     
                     <div class="input-group">
-  					<span class="input-group-addon">Username:</span>
-  					<input type="text" class="form-control" name="username" placeholder="Username">
-					</div>
+  					           <span class="input-group-addon">Username:</span>
+  					           <input type="text" class="form-control" name="username" placeholder="Username">
+					           </div>
+                    <br />
+      
+                    <div class="input-group">
+  					           <span class="input-group-addon">Password:</span>
+  					           <input type="password" class="form-control" name="password1" placeholder="Password">
+					         </div>
                     <br />
                     
                     <div class="input-group">
-  					<span class="input-group-addon">Password:</span>
-  					<input type="password" class="form-control" name="password1" placeholder="Password">
-					</div>
-                    <br />
-                    
-                    <div class="input-group">
-  					<span class="input-group-addon">Confirm password:</span>
-  					<input type="password" class="form-control" name="password2" placeholder="Password">
-					</div>
+            					<span class="input-group-addon">Confirm password:</span>
+            					<input type="password" class="form-control" name="password2" placeholder="Password">
+					         </div>
                     <br />
                     <br />
                     
                     <div class="input-group">
-  					<input type="submit" class="form-control" value="Submit">
-					</div>
+  					           <input type="submit" class="form-control" value="Submit">
+					           </div>
                    
-                    </div>
-				</form>
+                  </div>
+				        </form>
         	</div>
     </div>
 
