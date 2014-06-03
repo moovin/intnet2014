@@ -1,5 +1,6 @@
-function guessYearQuestion(jsonObj, questionNumber, numberRight) {
-    var rights = numberRight;
+function guessYearQuestion(jsonObj) {
+    //var rights = numberRight;
+    var questionNumber = 7;
     var imageURL = "'" + "dist/img/" + jsonObj.QImage + "'";
     element = $("#question").append("div").html(
         "<div class='row'>" +
@@ -35,11 +36,20 @@ function guessYearQuestion(jsonObj, questionNumber, numberRight) {
         // Compare the answer to the correct answer.
         if (answer == jsonObj.Correct) {
             alert("rätt!");
+            var rights = parseInt(getCookie("nRights"));
             rights = rights + 1;
+            document.cookie = "nRights=" + rights + "; expires= date() + 600;";
+            console.log("inne i mcQuestion och har satt rights: " + getCookie("nRights"));
+            rightIds = getCookie("rightIds");
+            if (rightIds == "none") {
+                document.cookie = "rightIds=" + jsonObj.QId + "; expires=date() + 600;";
+            } else {
+                document.cookie = "rightIds=" + rightIds + "," + jsonObj.QId + "; expires=date() + 600;";
+            }
         } else {
             alert("fel");
         }
         //window.location.reload(); //reload the page again and get a new question. 
-        newQuestion(questionNumber, rights);
+        newQuestion();
     });
 };

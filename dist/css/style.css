@@ -30,3 +30,24 @@ body{
 	padding-top: 15px;
 	padding-bottom: 25px;
 }
+.panel{
+	width: 70%;
+}
+
+.result{
+	color: green;
+}
+/*.result{
+	padding-top: 50px;
+}
+
+.wrongAnswer{
+	background-color: red;
+}
+
+.rightAnswer{
+	background-color: green;
+}
+.btn-next{
+	padding-top: 30px;
+}*/

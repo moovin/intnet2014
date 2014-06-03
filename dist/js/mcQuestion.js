@@ -1,6 +1,7 @@
-function mcQuestion(jsonObj, questionNumber, numberRight) {
+function mcQuestion(jsonObj) {
     var imageURL = "'" + "dist/img/" + jsonObj.QImage + "'";
-    rights = numberRight;
+    //rights = numberRight;
+    var questionNumber = 5;
     element = $("#question").append("div").html(
         "<div class='row'>" +
         "<div class='col-md-1'>" +
@@ -15,7 +16,6 @@ function mcQuestion(jsonObj, questionNumber, numberRight) {
         "<div class='col-md-5'>" +
         "<p id='qText'>" +
         jsonObj.QText + "</p>" +
-        "<form>" +
         "<div class='multipleChoice'>" +
         "<input class='answer' type='radio' name='alt1' value=" + jsonObj.Alt1 + ">" + " " + jsonObj.Alt1 + "</br>" +
         "<input class='answer' type='radio' name='alt2' value=" + jsonObj.Alt2 + ">" + " " + jsonObj.Alt2 + "</br>" +
@@ -23,7 +23,6 @@ function mcQuestion(jsonObj, questionNumber, numberRight) {
         "<input class='answer' type='radio' name='alt4' value=" + jsonObj.Alt4 + ">" + " " + jsonObj.Alt4 + "</br>" +
         "</div>" +
         "<input id='submitAnswer' type='submit'>" +
-        "</form>" +
         "</div>" +
         "<div class='col-md-6'>" +
         "<img class='qimg' src=" + imageURL + ">" +
@@ -52,12 +51,22 @@ function mcQuestion(jsonObj, questionNumber, numberRight) {
         // Compare the answer to the correct answer.
         if (answer == rightAnswerShort) {
             alert("rätt!");
+            var rights = parseInt(getCookie("nRights"));
             rights = rights + 1;
+            document.cookie = "nRights=" + rights + "; expires= date() + 600;";
+            console.log("inne i mcQuestion och har satt rights: " + getCookie("nRights"));
+            rightIds = getCookie("rightIds");
+            if (rightIds == "none") {
+                document.cookie = "rightIds=" + jsonObj.QId + "; expires=date() + 600;";
+            } else {
+                document.cookie = "rightIds=" + rightIds + "," + jsonObj.QId + "; expires=date() + 600;";
+            }
+
         } else {
             alert("fel");
         }
         //window.location.reload();
-        console.log("rights in submitAswer: " + rights);
-        newQuestion(questionNumber, rights);
+        //console.log("rights in submitAswer: " + rights);
+        newQuestion();
     });
 }
