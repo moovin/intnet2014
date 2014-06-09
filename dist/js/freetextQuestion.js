@@ -1,7 +1,7 @@
-function mcQuestion(jsonObj) {
-    var imageURL = "'" + "dist/img/" + jsonObj.QImage + "'";
-    //rights = numberRight;
+function textQuestion(jsonObj) {
+    //var rights = numberRight;
     var questionNumber = getCookie("nQuestions"); //Number of questions
+    var imageURL = "'" + "dist/img/" + jsonObj.QImage + "'";
     element = $("#question").append("div").html(
         "<div class='row'>" +
         "<div class='col-md-1'>" +
@@ -16,11 +16,8 @@ function mcQuestion(jsonObj) {
         "<div class='col-md-5'>" +
         "<p id='qText'>" +
         jsonObj.QText + "</p>" +
-        "<div class='multipleChoice'>" +
-        "<input class='answer' type='radio' name='alt1' value=" + jsonObj.Alt1 + ">" + " " + jsonObj.Alt1 + "</br>" +
-        "<input class='answer' type='radio' name='alt2' value=" + jsonObj.Alt2 + ">" + " " + jsonObj.Alt2 + "</br>" +
-        "<input class='answer' type='radio' name='alt3' value=" + jsonObj.Alt3 + ">" + " " + jsonObj.Alt3 + "</br>" +
-        "<input class='answer' type='radio' name='alt4' value=" + jsonObj.Alt4 + ">" + " " + jsonObj.Alt4 + "</br>" +
+        "<div class=multipleChoice>" +
+        "<input id='answer' type='text' name='text'>" +
         "</div>" +
         "<input id='submitAnswer' type='submit'>" +
         "</div>" +
@@ -30,26 +27,14 @@ function mcQuestion(jsonObj) {
         "</div>"
     );
 
-    var answer;
-    $(".answer").change(function() {
-        //Save the users temporary answer to the variable answer.
-        //answer = $(this)[0].value;
-        answer = $(this)[0].value;
-    });
-
+    console.log("2: jsonObj.Correct is: " + jsonObj.Correct + "and of type: " + typeof(jsonObj.Correct));
     $("#submitAnswer").click(function() {
-
-        console.log("answer is: " + answer + "jsonObj.Alt4 = " + jsonObj.Alt4);
-        console.log("and answer is of type: " + typeof(answer));
-        // console.log("correct: " + jsonObj.Correct);
-
-        //for some reson, the value of $(this)[0].value only takes the first word. So therefore we need to check it against the first word.
-        var rightAnswerLong = jsonObj.Correct.split(" ");
-        var rightAnswerShort = rightAnswerLong[0];
-
-
+        //Save the users answer to the variable answer. This is a string (like "1988"). 
+        var answer = $("#answer")[0].value;
+        console.log("answer is: " + answer + " and type is: " + typeof(answer));
+        console.log("jsonObj.Correct is: " + jsonObj.Correct + "and of type: " + typeof(jsonObj.Correct));
         // Compare the answer to the correct answer.
-        if (answer == rightAnswerShort) {
+        if (answer == jsonObj.Correct) {
             alert("rätt!");
             var rights = parseInt(getCookie("nRights"));
             rights = rights + 1;
@@ -61,12 +46,10 @@ function mcQuestion(jsonObj) {
             } else {
                 document.cookie = "rightIds=" + rightIds + "," + jsonObj.QId + "; expires=date() + 600;";
             }
-
         } else {
             alert("fel");
         }
-        //window.location.reload();
-        //console.log("rights in submitAswer: " + rights);
+        //window.location.reload(); //reload the page again and get a new question. 
         newQuestion();
     });
-}
+};

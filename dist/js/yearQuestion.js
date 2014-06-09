@@ -1,6 +1,6 @@
 function guessYearQuestion(jsonObj) {
     //var rights = numberRight;
-    var questionNumber = 7;
+    var questionNumber = getCookie("nQuestions"); //Number of questions
     var imageURL = "'" + "dist/img/" + jsonObj.QImage + "'";
     element = $("#question").append("div").html(
         "<div class='row'>" +

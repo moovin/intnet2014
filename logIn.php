@@ -1,3 +1,7 @@
+<?php
+    ob_start(); // Initiate the output buffer
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -53,6 +57,7 @@
        if($count==1){
           $line = $result->fetch_object();
           $userId=$line->UserId;
+          setcookie("username", $username);
           echo $userId;
           echo "<div id='sucess' class='pages'>
                 <br />
@@ -71,70 +76,17 @@
                 <div class= pagetext>
                     <h3> Wrong username or password. Please try again. </h3> 
                     <br />
-                    <a href='logIn.html'><button class='btn'> Go back </button> </a> <a href='createAccount.html'><button class='btn'> Create new account </button> </a>
+                    <a href='logIn.html'><button class='btn'> Log in </button> </a> <a href='createAccount.html'><button class='btn'> Create new account </button> </a>
                 </div>
             </div>";
        }
 
       /* free result set */
-      mysqli_free_result($result);
-
-
-
-    // $result=mysqli_query($query);
-
-    // // Mysql_num_row is counting table row
-    // $count=mysql_num_rows($result);
-
-    // // If result matched $myusername and $mypassword, table row must be 1 row
-    // if($count==1){
-    //   echo "Wrong Username or Password";
-    //   // Register $myusername, $mypassword and redirect to file "login_success.php"
-    //   // session_register("myusername");
-    //   // session_register("mypassword"); 
-    //   // header("location:login_success.php");
-    // }
-    // else {
-    //   echo "Wrong Username or Password";
-    // }
-
-    // $returnJson =json_encode($returnArray);
-    // //  Free result and return
-    // mysqli_free_result($result);
-    // echo($returnJson);
-
-   //  if ($password1 == $password2){
-   //      echo "right password.";
-   //       $sql="INSERT INTO Table_Users (Name, Password)
-   //      VALUES ('$username', '$password1')";
-
-   //      if (!mysqli_query($link,$sql)) {
-   //          die('Error: ' . mysqli_error($link));
-   //      }
-   //      echo "<div id='sucess' class='pages'>
-   //      <br />
-   //          <div class= pagetext>
-   //              <h2> Welcome " . $_POST['username'] . ", you have successfully created your account. </h2>
-   //               <br />
-   //              <a href='quiz.html'> <button type='button' class='btn btn-default btn-lg'>
-   //                  <span class='glyphicon glyphicon-headphones'></span> Start!
-   //              </button> </a>
-   //          </div>
-   //      </div>";
-   //  }
-
-   // else{
-        ?> 
-            <!-- <div id='error' class='pages'>
-                <div class= pagetext>
-                    <h3> The passwords didn't match. Please try again. </h3> 
-                    <br />
-                    <a href="createAccount.html"><button class="btn"> Go back </button> </a>
-                </div>
-            </div> -->
+      mysqli_free_result($result);?> 
     <?php
-   // }
-
-
     mysqli_close($link);
+?>
+</body></html>
+<?php
+    ob_end_flush(); // Flush the output from the buffer
 ?>

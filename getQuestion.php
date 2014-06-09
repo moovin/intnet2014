@@ -1,8 +1,27 @@
 <?php  
-	
+	// 	//Check if there's an ongoing session for this user.
+	if(isset($_COOKIE['QuestionsAsked'])) {
+		//echo " is set! ";
+// 		for i in $_COOKIE["nQuestions"]{
+
+		$questionsAsked = stripslashes($_COOKIE['questionsAsked']);
+		// $rightIds = stripslashes($_COOKIE['rightIds']);
+		$questionsAsked = str_replace(",", "",$questionsAsked);
+		echo $questionsAsked;
+			
+ 		}
+// 	}	
+	 else{
+	 		//echo " is not set! ";
+	 		setcookie("QuestionsAsked", "", time()+360);
+	 		setcookie("nQuestions", 0, time()+360);
+	 	}
+// 	//If not, create a cookie for this user.
+// 	setcookie("QuestionsAsked", "", time()+360);
+// 	setcookie("nQuestions", 0, time()+360);
 
 	// 	randomize the type of question we will be asking from the database.
-	$typesArray=array("GuessYear","MCQ");
+	$typesArray=array("GuessYear","MCQ","Freetext");
 	shuffle($typesArray);
 	$type=$typesArray[0];
  	$returnArray=array();
@@ -17,16 +36,7 @@
 	}
     
 	
-// 	//Check if there's an ongoing session for this user.
-// 	if(isset($_COOKIE['QuestionsAsked']) {
-// 		for i in $_COOKIE["nQuestions"]{
-			
-// 		}
-// 	}	
-	
-// 	//If not, create a cookie for this user.
-// 	setcookie("QuestionsAsked", "", time()+360);
-// 	setcookie("nQuestions", 0, time()+360);
+
 	
 	
 	//if the randomed type is a Multiple Choice Question
@@ -69,6 +79,26 @@
 	        $returnArray["QImage"]=$line->QImage;
 	        $returnArray["QText"]=$line->QText;
 	        $returnArray["Type"]="GuessYear";
+    		}
+ 		} 
+ 		elseif ($type=="Freetext") {
+
+		// The SQL query
+    	$query = "SELECT * FROM Table_Freetext ORDER BY RAND() LIMIT 1";
+
+	    // 	Execute the query
+		if (($result = mysqli_query($link,$query)) == FALSE) {
+    	   	printf("Query failed: %s\n",  $query);
+			}
+       
+	    // 	Loop over the resulting lines
+    	while ($line = $result->fetch_object()) {
+	        // Store the result we want by appending strings to the variable $returnstring
+	        $returnArray["Correct"]=$line->Correct;
+	        $returnArray["QId"]=$line->QId;
+	        $returnArray["QImage"]=$line->QImage;
+	        $returnArray["QText"]=$line->QText;
+	        $returnArray["Type"]="Freetext";
     		}
  		} else{
  			$returnArray["Type"]=$type;

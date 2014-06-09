@@ -27,10 +27,11 @@ $(document).ready(function() {
             }
 
             if (jsonObj.Type == "GuessYear") {
-
                 guessYearQuestion(jsonObj);
             } else if (jsonObj.Type == "MCQ") {
                 mcQuestion(jsonObj);
+            } else if (jsonObj.Type == "Freetext") {
+                textQuestion(jsonObj);
             } else {
                 element = $("#question").append("div").html("<h1> no question matchaded </h1>");
             }
